@@ -1,4 +1,7 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = "net.bartushk.picle.Program"
 
 repositories{
     mavenCentral();
@@ -6,11 +9,17 @@ repositories{
 
 dependencies{
     testCompile 'junit:junit:4.12'
+    compile files("./libs/opencv/opencv-310.jar")  
 }
 
 test{
     testLogging{
         events "passed", "skipped", "failed"
     }
+    systemProperty 'java.library.path', file( './libs/opencv')
 }
 
+
+run {
+    systemProperty 'java.library.path', file( './libs/opencv')
+}
