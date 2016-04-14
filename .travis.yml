@@ -1,6 +1,0 @@
-language: java
-dist: trusty
-env:
-  - CI=true
-jdk:
-  - oraclejdk8
