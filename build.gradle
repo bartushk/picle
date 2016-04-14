@@ -2,6 +2,12 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = "net.bartushk.picle.Program"
+def opencvDep = "${rootDir}/libs/opencv/ubuntu1510";
+def libraryPath = System.properties['java.library.path']
+def isCI = System.getenv("CI")
+if( isCI == 'true' ){
+    opencvDep = "${rootDir}/libs/opencv/ubuntu1404";
+}
 
 repositories{
     mavenCentral();
@@ -9,17 +15,16 @@ repositories{
 
 dependencies{
     testCompile 'junit:junit:4.12'
-    compile files("./libs/opencv/opencv-310.jar")  
+    compile files("${opencvDep}/opencv-310.jar")  
 }
 
 test{
     testLogging{
         events "passed", "skipped", "failed"
     }
-    systemProperty 'java.library.path', file( './libs/opencv')
+    systemProperty 'java.library.path', "${libraryPath}:${opencvDep}"
 }
 
-
 run {
-    systemProperty 'java.library.path', file( './libs/opencv')
+    systemProperty 'java.library.path', "${libraryPath}:${opencvDep}"
 }

@@ -1,3 +1,5 @@
 language: java
+env:
+  - CI=true
 jdk:
   - oraclejdk8
