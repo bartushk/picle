@@ -18,6 +18,21 @@ dependencies{
     compile files("${opencvDep}/opencv-310.jar")  
 }
 
+sourceSets{
+    main{
+        resources{
+            srcDir 'assets'
+        }
+    }
+
+    test{
+        resources{
+            srcDir 'assets'
+        }
+    }
+
+}
+
 test{
     testLogging{
         events "passed", "skipped", "failed"
