@@ -1,4 +1,4 @@
-package net.bartushk.picle.test;
+package net.bartushk.picletest;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

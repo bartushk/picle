@@ -29,18 +29,20 @@ public class FilterProperty{
         this(   toCopy.getName(), 
                 toCopy.getMax(),
                 toCopy.getMin(),
-                toCopy.getStep());
+                toCopy.getStep(),
+                toCopy.getValue());
     }
 
-    public FilterProperty(String name, double max, double min, double step){
+    public FilterProperty(String name, double max, double min, double step, double value){
         this.name = name;
         this.max = max;
         this.min = min;
         this.step = step;
+        this.value = value;
     }
 
     public FilterProperty(String name){
-        this(name, 1.0, 0.0, 0.1);
+        this(name, 1.0, 0.0, 0.1, 1.0);
     }
 
     public FilterProperty(){
