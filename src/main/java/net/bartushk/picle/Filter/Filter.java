@@ -13,14 +13,14 @@ import java.util.List;
  * @author Kyle Bartush
  * @since 0.1
  */
-public abstract class Filter implements IFilter{
+public abstract class Filter implements IFilter
+{
     
     protected HashMap<String, FilterProperty> properties;
 
     public Filter(){
         properties = new HashMap<String, FilterProperty>();
     }
-
 
     public FilterProperty getProperty(String name){
         if( properties.containsKey(name) ){

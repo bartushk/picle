@@ -18,7 +18,9 @@ import org.opencv.core.Mat;
  * @author Kyle Bartush
  * @since 0.1
  */
-public interface IFilter{
+
+public interface IFilter
+{
 
     Mat applyFilter(Mat inputImage);
 
