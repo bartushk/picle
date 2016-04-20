@@ -49,6 +49,15 @@ public class FilterProperty{
         this("No-Name");
     }
     
+    /*
+     * If a value is passed outside of the min and max, it is not set.
+     */
+
+    public void setValue(double value){
+        if( value >= this.min && value <= this.max)
+            this.value = value;
+    }
+
     //name getter and setter
     public String getName(){
         return name;
@@ -90,7 +99,4 @@ public class FilterProperty{
         return value;
     }
     
-    public void setValue(double value){
-        this.value = value;
-    }
 }

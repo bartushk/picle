@@ -14,45 +14,21 @@ import org.opencv.core.Mat;
  * @author Kyle Bartush
  * @since 0.1
  */
-public class ColorFilter implements IFilter{
-    private FilterProperty redFilter; 
-    private FilterProperty greenFilter; 
-    private FilterProperty blueFilter; 
-
+public class ColorFilter extends Filter{
 
     public ColorFilter(){
-        redFilter = new FilterProperty("Red");
-        greenFilter = new FilterProperty("Green");
-        blueFilter = new FilterProperty("Blue");
+        super();
+        FilterProperty redProperty = new FilterProperty("Red");
+        FilterProperty greenProperty = new FilterProperty("Green");
+        FilterProperty blueProperty = new FilterProperty("Blue");
+        
+        redProperty.setStep(0.01);
+        blueProperty.setStep(0.01);
+        greenProperty.setStep(0.01);
 
-        redFilter.setStep(0.01);
-        blueFilter.setStep(0.01);
-        greenFilter.setStep(0.01);
-    }
-
-    public FilterProperty getProperty(String name){
-        if(name.equals("Red")){
-            return new FilterProperty(redFilter);
-        }else if(name.equals("Blue")){
-            return new FilterProperty(blueFilter);
-        }else if(name.equalsIgnoreCase("Green")){
-            return new FilterProperty(greenFilter);
-        }
-        return null;
-    }
-
-    public void setProperty(String name, double value){
-        if(name.equals("Red")){
-            redFilter.setValue(value);
-        }else if(name.equals("Blue")){
-            blueFilter.setValue(value);
-        }else if(name.equalsIgnoreCase("Green")){
-            greenFilter.setValue(value);
-        }
-    }
-
-    public List<String> getPropertyNames(){
-        return Arrays.asList("Red", "Blue", "Green");
+        properties.put("Red", redProperty);
+        properties.put("Green", greenProperty);
+        properties.put("Blue", blueProperty);
     }
 
     public Mat applyFilter(Mat inputImage){
