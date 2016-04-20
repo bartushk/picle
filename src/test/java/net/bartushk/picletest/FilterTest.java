@@ -59,10 +59,10 @@ public class FilterTest
         MockFilter filter = new MockFilter();
 
         filter.setProperty("Test1", 12.0);
-        filter.setProperty("Test2", 22.0);
+        filter.setProperty("Test2", -22.0);
         
         assertEquals(filter.prop1.getValue(), 12.0, EPSILON);
-        assertEquals(filter.prop2.getValue(), 22.0, EPSILON);
+        assertEquals(filter.prop2.getValue(), -22.0, EPSILON);
     }
 
     @Test
