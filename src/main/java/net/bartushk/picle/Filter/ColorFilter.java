@@ -1,9 +1,13 @@
 package net.bartushk.picle.Filter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
 
 /**
  *
@@ -16,6 +20,12 @@ import org.opencv.core.Mat;
  */
 public class ColorFilter extends Filter{
 
+    /**
+     *
+     * Default constructor that intializes 3 properties to control the
+     * scaling of the color channels for this filter.
+     *
+     */
     public ColorFilter(){
         super();
         FilterProperty redProperty = new FilterProperty("Red");
@@ -31,8 +41,34 @@ public class ColorFilter extends Filter{
         properties.put("Blue", blueProperty);
     }
 
+    /**
+     *
+     * Applies a scale to the each color channel based on the 'Red', 'Green', and
+     * 'Blue' properties of the filter. Returns a copy of the image if it is not
+     * a color image (if it has less than 3 channels.)
+     *
+     * @param inputImage the image that will have its color values scaled.
+     * @throws nothing
+     */
     public Mat applyFilter(Mat inputImage){
-        return inputImage.clone();
+        Mat returnImage = new Mat();
+        List<Mat> channels = new ArrayList<Mat>();
+        Core.split(inputImage, channels);
+        int channelSize = channels.size();
+
+        if( channelSize == 3 || channelSize == 4 ){
+            double redValue = properties.get("Red").getValue();
+            double greenValue = properties.get("Green").getValue();
+            double blueValue = properties.get("Blue").getValue();
+            Core.multiply(channels.get(0), new Scalar(blueValue), channels.get(0));
+            Core.multiply(channels.get(1), new Scalar(greenValue), channels.get(1));
+            Core.multiply(channels.get(2), new Scalar(redValue), channels.get(2));
+            Core.merge(channels, returnImage);
+        } else {
+            returnImage = inputImage.clone();
+        }
+
+        return returnImage;
     }
 }
 
