@@ -17,8 +17,7 @@ import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import net.bartushk.picle.Filter.ColorFilter;
-import net.bartushk.picle.Filter.IFilter;
+import net.bartushk.picle.Filter.*;
 
 public class Program
 {
@@ -45,10 +44,14 @@ public class Program
         String path = Program.class.getResource("/images/cat1.jpeg").getPath();
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         Mat img = Imgcodecs.imread(path);
-        ColorFilter filter = new ColorFilter();
-        filter.setProperty("Red", 0);
-        filter.setProperty("Green", 0);
-        img = filter.applyFilter(img);
+        IFilter filter = new SharpnessFilter();
+        filter.setProperty("Sharpness", 1.0);
+        Mat filteredImg = filter.applyFilter(img);
+        filter.setProperty("Sharpness", -0.25);
+        Mat filteredImg2 = filter.applyFilter(img);
+
         imgShow(img);
+        imgShow(filteredImg);
+        imgShow(filteredImg2);
     }
 }
