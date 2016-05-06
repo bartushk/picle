@@ -44,10 +44,12 @@ public class Program
         String path = Program.class.getResource("/images/cat1.jpeg").getPath();
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         Mat img = Imgcodecs.imread(path);
-        IFilter filter = new SharpnessFilter();
-        filter.setProperty("Sharpness", 1.0);
+        IFilter filter = new OutlineFilter();
+        filter.setProperty("Thickness", 3.0);
+        filter.setProperty("Strength", 3.0);
         Mat filteredImg = filter.applyFilter(img);
-        filter.setProperty("Sharpness", -0.25);
+        filter.setProperty("Thickness", 3.0);
+        filter.setProperty("Strength", 1.0);
         Mat filteredImg2 = filter.applyFilter(img);
 
         imgShow(img);
@@ -55,3 +57,4 @@ public class Program
         imgShow(filteredImg2);
     }
 }
+

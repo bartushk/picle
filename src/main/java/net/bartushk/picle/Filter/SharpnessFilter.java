@@ -53,7 +53,7 @@ public class SharpnessFilter extends Filter{
      * <p> The sharpening effect is accomplished by applying a guasian blur to the original image
      * to blur it, and subtracting the blurred image from the original to sharpen.
      *
-     * @param inputImage iamge to be sharpened/blurred.
+     * @param inputImage image to be sharpened/blurred.
      */
     public Mat applyFilter(Mat inputImage){
         double sharpnessValue = properties.get("Sharpness").getValue(); 
