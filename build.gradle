@@ -2,11 +2,11 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 mainClassName = "net.bartushk.picle.Program"
-def opencvDep = "${rootDir}/libs/opencv/ubuntu1510";
+def opencvDep = "libs/opencv/ubuntu1510";
 def libraryPath = System.properties['java.library.path']
 def isCI = System.getenv("CI")
 if( isCI == 'true' ){
-    opencvDep = "${rootDir}/libs/opencv/ubuntu1404";
+    opencvDep = "libs/opencv/ubuntu1404";
 }
 
 repositories{
