@@ -3,6 +3,7 @@ package net.bartushk.picle.Graph;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.AbstractExecutorService;
 
 import net.bartushk.picle.Core.IOperation;
 import net.bartushk.picle.Core.IResourceResolver;
@@ -25,19 +26,20 @@ public class ProcessingNode<T> extends Node implements Runnable
      * the operation for this node is run.
      */
     private int receivedInputs;
-    private List<String> inputKeys;
-    private List<String> outputKeys;
     private HashMap<String, String> inputLookup;
     private IOperation<T> operation;
     private IResourceResolver<T> resourceResolver;
+    private AbstractExecutorService executor;
     
-    public ProcessingNode(IOperation<T> operation, IResourceResolver<T> resolver){
-        super();
+    public ProcessingNode(String nodeKey, IOperation<T> operation, 
+                IResourceResolver<T> resolver, AbstractExecutorService executor){
+        super(nodeKey);
         this.receivedInputs = 0;
         this.operation = operation;
-        this.resourceResolver = resourceResolver;
+        this.resourceResolver = resolver;
         this.inputKeys = operation.getInputKeys();
         this.outputKeys = operation.getOutputKeys();
+        this.executor = executor;
     }
 
     public void Reset(){
@@ -49,19 +51,10 @@ public class ProcessingNode<T> extends Node implements Runnable
             receivedInputs++; 
             this.inputLookup.put(inputName, lookupKey);
             if( receivedInputs >= inputKeys.size() ){
-                new Thread(this).start();
+                executor.execute(this);
             }
         }
     }
-
-    public List<String> getInputKeys(){
-        return inputKeys;
-    }
-
-    public List<String> getOutputKeys(){
-        return outputKeys;
-    }
-
 
     public void run(){
         HashMap<String, T> operationInput = new HashMap<String, T>(); 

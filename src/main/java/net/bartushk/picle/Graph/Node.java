@@ -1,7 +1,9 @@
 package net.bartushk.picle.Graph;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -15,9 +17,15 @@ public class Node
     protected HashMap<String, Edge> fromEdges;
     protected HashMap<String, Edge> toEdges;
     protected String nodeKey;
+    protected List<String> inputKeys;
+    protected List<String> outputKeys;
 
     public Node(){
-            nodeKey = "No-Name-Node";
+        nodeKey = "No-Name-Node";
+        fromEdges = new HashMap<String, Edge>();
+        toEdges = new HashMap<String, Edge>();
+        inputKeys = new ArrayList<String>();
+        outputKeys = new ArrayList<String>();
     }
 
     public Node(String nodeKey){
@@ -46,5 +54,13 @@ public class Node
     
     public void setNodeKey(String nodeKey){
         this.nodeKey = nodeKey;
+    }
+
+    public List<String> getInputKeys(){
+        return inputKeys;
+    }
+
+    public List<String> getOutputKeys(){
+        return outputKeys;
     }
 }
