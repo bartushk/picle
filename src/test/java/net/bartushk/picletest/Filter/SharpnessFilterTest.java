@@ -1,4 +1,4 @@
-package net.bartushk.picletest;
+package net.bartushk.picletest.Filter;
 
 import net.bartushk.picle.Filter.*;
 import net.bartushk.picle.*;
@@ -6,9 +6,7 @@ import static net.bartushk.picletest.TestUtils.EPSILON;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.CvType;
 
 
 public class SharpnessFilterTest extends BaseFilterTest

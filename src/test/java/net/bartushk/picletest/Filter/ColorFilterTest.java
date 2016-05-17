@@ -1,19 +1,12 @@
-package net.bartushk.picletest;
+package net.bartushk.picletest.Filter;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
-import org.opencv.imgcodecs.Imgcodecs;
 
 import net.bartushk.picle.Filter.*;
-import net.bartushk.picle.Program;
 import static net.bartushk.picletest.TestUtils.EPSILON;
 import static org.junit.Assert.*;
 

@@ -1,4 +1,4 @@
-package net.bartushk.picletest;
+package net.bartushk.picletest.Filter;
 
 import java.util.List;
 

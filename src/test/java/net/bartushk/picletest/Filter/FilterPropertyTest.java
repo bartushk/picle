@@ -1,10 +1,6 @@
-package net.bartushk.picletest;
-
-import java.util.List;
+package net.bartushk.picletest.Filter;
 
 import org.junit.Test;
-
-import org.opencv.core.Mat;
 
 import net.bartushk.picle.Filter.*;
 import static net.bartushk.picletest.TestUtils.EPSILON;

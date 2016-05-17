@@ -1,6 +1,4 @@
-package net.bartushk.picletest;
-
-import org.junit.BeforeClass;
+package net.bartushk.picletest.Filter;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
