@@ -25,7 +25,9 @@ public class Node
         fromEdges = new HashMap<String, Edge>();
         toEdges = new HashMap<String, Edge>();
         inputKeys = new ArrayList<String>();
+        inputKeys.add("input");
         outputKeys = new ArrayList<String>();
+        outputKeys.add("output");
     }
 
     public Node(String nodeKey){
@@ -33,11 +35,11 @@ public class Node
     }
 
     public void addFromEdge(Edge toAdd){
-        this.toEdges.put(toAdd.getToKey(), toAdd);
+        this.fromEdges.put(toAdd.getFromKey(), toAdd);
     }
 
     public void addToEdge(Edge toAdd){
-        this.fromEdges.put(toAdd.getFromKey(), toAdd);
+        this.toEdges.put(toAdd.getToKey(), toAdd);
     }
     
     public Collection<Edge> getFromEdges(){

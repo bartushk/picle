@@ -16,10 +16,6 @@ public class Edge
     private String fromKey;
     private String toKey;
 
-    public Edge(){
-
-    }
-
     public Edge(Node from, Node to, String fromKey, String toKey){
         this.from = from;
         this.to = to;
