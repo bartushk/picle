@@ -1,6 +1,6 @@
 package net.bartushk.picle.Graph;
 
-import java.util.ArrayList;
+import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.AbstractExecutorService;
@@ -27,6 +27,7 @@ public class ProcessingNode<T> extends Node implements Runnable
      */
     private int receivedInputs;
     private HashMap<String, String> inputLookup;
+    private HashMap<String, Integer> inputCounts;
     private IOperation<T> operation;
     private IResourceResolver<T> resourceResolver;
     private AbstractExecutorService executor;
@@ -34,23 +35,31 @@ public class ProcessingNode<T> extends Node implements Runnable
     public ProcessingNode(String nodeKey, IOperation<T> operation, 
                 IResourceResolver<T> resolver, AbstractExecutorService executor){
         super(nodeKey);
-        this.receivedInputs = 0;
         this.operation = operation;
         this.resourceResolver = resolver;
-        this.inputKeys = operation.getInputKeys();
-        this.outputKeys = operation.getOutputKeys();
         this.executor = executor;
+        this.Reset();
     }
 
     public void Reset(){
         this.receivedInputs = 0;
+        this.inputLookup = new HashMap<String, String>();
+        this.inputCounts = new HashMap<String, Integer>();
+        for( String input : this.operation.getInputKeys() ){
+            this.inputCounts.put(input, 0);
+        }
     }
 
     public void InputReady(String inputName, String lookupKey){
+        if( !inputCounts.containsKey(inputName) )
+            return;
         synchronized(this) {
+            if( inputCounts.get(inputName) > 0 )
+                return;
+            inputCounts.put(inputName, 1);
             receivedInputs++; 
             this.inputLookup.put(inputName, lookupKey);
-            if( receivedInputs >= inputKeys.size() ){
+            if( receivedInputs >= operation.getInputKeys().size() ){
                 executor.execute(this);
             }
         }
@@ -58,11 +67,11 @@ public class ProcessingNode<T> extends Node implements Runnable
 
     public void run(){
         HashMap<String, T> operationInput = new HashMap<String, T>(); 
-        for(String key : this.inputKeys){
+        for( String key : this.operation.getInputKeys() ){
             operationInput.put(key, this.resourceResolver.getResource(this.inputLookup.get(key)));
         }
         HashMap<String, T> operationOutput = operation.process(operationInput);
-        for(String key : this.outputKeys){
+        for( String key : this.operation.getOutputKeys() ){
             String dataKey = this.nodeKey + key;
             this.resourceResolver.putResource(dataKey, operationOutput.get(key)); 
             Edge activeEdge = this.fromEdges.get(key);
@@ -71,4 +80,15 @@ public class ProcessingNode<T> extends Node implements Runnable
             toTrigger.InputReady(activeEdge.getToKey(), dataKey);
         }
     }
+
+    @Override
+    public List<String> getInputKeys(){
+        return operation.getInputKeys();
+    }
+
+    @Override
+    public List<String> getOutputKeys(){
+        return operation.getOutputKeys();
+    }
+
 }

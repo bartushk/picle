@@ -31,6 +31,7 @@ public class Node
     }
 
     public Node(String nodeKey){
+        this();
         this.nodeKey = nodeKey;
     }
 
