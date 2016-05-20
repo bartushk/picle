@@ -48,7 +48,6 @@ public class ColorFilter extends Filter{
      * a color image (if it has less than 3 channels.)
      *
      * @param inputImage the image that will have its color values scaled.
-     * @throws nothing
      */
     public Mat applyFilter(Mat inputImage){
         Mat returnImage = new Mat();
