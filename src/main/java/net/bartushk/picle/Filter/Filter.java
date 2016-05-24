@@ -8,7 +8,7 @@ import java.util.List;
  *
  * The Filter class is an abstract class that handles the property functoinality of the
  * IFilter interface by storing filter properties in a dictionary. If implementing this class
- * each hproperty should be put into the properties dictionary with it's name as the key.
+ * each hproperty should be put into the properties dictionary keyed by its name.
  *
  * @author Kyle Bartush
  * @since 0.1

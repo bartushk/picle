@@ -4,8 +4,9 @@ package net.bartushk.picle.Filter;
 /**
  *
  * Basic struct like class used for holding information about one of a filter's editable
- * properties. For example, a color filter may have 3 properties named: Red Green Blue, which could be used
- * to adjust the amount each fundamental color type is adjusted by the filter.
+ * properties. For example, a color filter may have 3 properties named: Red Green Blue,
+ * which could be used to dictate the amount each fundamental color type
+ * is adjusted by the filter.
  *
  * @author Kyle Bartush
  * @since 0.1
