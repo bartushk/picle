@@ -42,6 +42,14 @@ public class Node
     public void addToEdge(Edge toAdd){
         this.toEdges.put(toAdd.getToKey(), toAdd);
     }
+
+    public void removeFromEdge(Edge toRemove){
+        this.fromEdges.remove(toRemove.getFromKey());
+    }
+
+    public void removeToEdge(Edge toRemove){
+        this.toEdges.remove(toRemove.getToKey());
+    }
     
     public Collection<Edge> getFromEdges(){
         return fromEdges.values();

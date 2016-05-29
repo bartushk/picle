@@ -125,12 +125,50 @@ public class Graph
      * @param toInput Node input the the removed edge goes to.
      * @throws InvalidNodeException if for any reason this link cannot be created.
      */
-    public void unLinkNodes(String fromNode, String toNode,
+    public boolean unLinkNodes(String fromNode, String toNode,
                             String fromOutput, String toInput) 
     {
-        
+        if(!nodes.containsKey(fromNode))
+            return false;
+
+        if(!nodes.containsKey(toNode))
+            return false;
+
+        if(fromNode == toNode)
+            return false;
+
+        Node fNode = nodes.get(fromNode);
+        Node tNode = nodes.get(toNode);
+
+        if( !fNode.getOutputKeys().contains(fromOutput) )
+            return false;
+
+        if( !tNode.getOutputKeys().contains(toInput) )
+            return false;
 
 
+        Edge toRemove = null;
+        for(Edge edge: fNode.getFromEdges()){
+            if( edge.getFromKey() == fromOutput )
+                toRemove = edge;
+        }
+
+        for(Edge edge: tNode.getFromEdges()){
+            if( edge.getToKey() == toInput ){
+                if( edge != toRemove ){
+                    return false;
+                }
+            }
+        }
+
+        if( toRemove == null ){
+            return false;
+        }
+
+        this.edges.remove(toRemove);
+        fNode.removeFromEdge(toRemove);
+        tNode.removeToEdge(toRemove);
+        return true;
     }
 
     public Collection<Edge> getEdges(){
