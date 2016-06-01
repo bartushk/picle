@@ -2,13 +2,68 @@ package net.bartushk.picletest.Graph;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.bartushk.picle.Graph.Edge;
 import net.bartushk.picle.Graph.Graph;
 import net.bartushk.picle.Graph.Node;
 import net.bartushk.picle.Graph.Exceptions.BadNodeException;
+import net.bartushk.picle.Graph.Exceptions.InvalidNodeLinkException;
 
 public class GraphTest
 {
+    /**
+     * Helper function used for creating an initial graph for testing.
+     */
+    private Graph initGraph(){
+        Graph returnGraph = new Graph();
+        // make some mock nodes with 3 inputs and outputs
+        List<String> nodeInput = new ArrayList<String>();
+        List<String> nodeOutput = new ArrayList<String>();
+        nodeInput.add("Input1");
+        nodeInput.add("Input2");
+        nodeInput.add("Input3");
+        nodeOutput.add("Output1");
+        nodeOutput.add("Output2");
+        nodeOutput.add("Output3");
+
+        Node node1 = (Node)mock(Node.class);
+        Node node2 = (Node)mock(Node.class);
+        when(node1.getNodeKey()).thenReturn("TestOne");
+        when(node2.getNodeKey()).thenReturn("TestTwo");
+        when(node1.getInputKeys()).thenReturn(nodeInput);
+        when(node2.getInputKeys()).thenReturn(nodeInput);
+        when(node1.getOutputKeys()).thenReturn(nodeOutput);
+        when(node2.getOutputKeys()).thenReturn(nodeOutput);
+
+        // Create some artifical edges between the two mock nodes.
+        Edge linkedEdge1 = new Edge(node1, node2, "Output2", "Bad");
+        Edge linkedEdge2 = new Edge(node1, node2, "Bad", "Input2");
+        Edge linkedEdge3 = new Edge(node1, node2, "Output3", "Input3");
+        Collection<Edge> edges = new ArrayList<Edge>();
+        edges.add(linkedEdge1);
+        edges.add(linkedEdge2);
+        edges.add(linkedEdge3);
+        when(node1.getFromEdges()).thenReturn(edges);
+        when(node2.getToEdges()).thenReturn(edges);
+        returnGraph.getEdges().add(linkedEdge1);
+        returnGraph.getEdges().add(linkedEdge2);
+        returnGraph.getEdges().add(linkedEdge3);
+
+        try{
+            returnGraph.addNode(node1);
+            returnGraph.addNode(node2);
+        } catch(BadNodeException e){
+            returnGraph = new Graph();
+        }
+
+        return returnGraph;
+    }
+
     private void addNode(Graph graph, Node node){
         try{
             graph.addNode(node);
@@ -90,4 +145,77 @@ public class GraphTest
         assertNotNull(ex);
     }
 
+    @Test
+    public void Graph_linkNodes_BadNodes(){
+        Graph testGraph = initGraph();
+        Exception ex = null;
+        // Non existant toNode should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestBad", "Output1", "Input1");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "toNode does not exist.");
+        ex = null;
+
+        // Non existant fromNode should error.
+        try{
+            testGraph.linkNodes("TestBad", "TestOne", "Output1", "Input1");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "fromNode does not exist.");
+        ex = null;
+
+        // Nodes of the same name should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestOne", "Output1", "Input1");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "Cannot make a link to the same node.");
+    }
+
+    @Test
+    public void Graph_linkNodes_BadEdge(){
+        Graph testGraph = initGraph();
+        Exception ex = null;
+        // Non existant input should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestTwo", "Output1", "InputBad");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "toNode does not contain the specified input.");
+        ex = null;
+        
+        // Non existant output should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestTwo", "OutputBad", "Input1");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "fromNode does not contain the specified output.");
+        ex = null;
+
+        // Edge already esists on fromNode should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestTwo", "Output2", "Input1");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "fromNode already has a valid edge at that output.");
+        ex = null;
+
+        // Edge already esists on toNode should error.
+        try{
+            testGraph.linkNodes("TestOne", "TestTwo", "Output1", "Input2");
+        } catch (InvalidNodeLinkException e){
+            ex = e;
+        }
+        assertEquals(ex.getMessage(), "toNode already has a valid edge at that input.");
+
+    }
+    
+    
 }

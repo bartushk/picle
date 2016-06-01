@@ -94,17 +94,17 @@ public class Graph
         Node tNode = nodes.get(toNode);
 
         if( !fNode.getOutputKeys().contains(fromOutput) )
-            throw new InvalidNodeLinkException("fromNode does not contain an output for fromOutput");
+            throw new InvalidNodeLinkException("fromNode does not contain the specified output.");
 
-        if( !tNode.getOutputKeys().contains(toInput) )
-            throw new InvalidNodeLinkException("toNode does not contain an input for toInput");
+        if( !tNode.getInputKeys().contains(toInput) )
+            throw new InvalidNodeLinkException("toNode does not contain the specified input.");
 
         for(Edge edge: fNode.getFromEdges()){
             if( edge.getFromKey() == fromOutput )
                 throw new InvalidNodeLinkException("fromNode already has a valid edge at that output.");
         }
 
-        for(Edge edge: tNode.getFromEdges()){
+        for(Edge edge: tNode.getToEdges()){
             if( edge.getToKey() == toInput )
                 throw new InvalidNodeLinkException("toNode already has a valid edge at that input.");
         }
