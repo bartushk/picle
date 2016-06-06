@@ -124,6 +124,28 @@ public class GraphTest
     }
 
     @Test
+    public void Graph_RemoveNode(){
+        Graph testGraph = new Graph();
+        Node toAddOne = new Node();
+        Node toAddTwo = new Node("Node Two");
+
+        try{
+            testGraph.addNode(toAddOne);
+            testGraph.addNode(toAddTwo);
+        } catch (Exception e){
+            assertNull(e);
+        }
+        // no error on non existant node.
+        testGraph.removeNode("asdf");
+        // remove second node
+        testGraph.removeNode("Node Two");
+
+        Collection<Node> nodes = testGraph.getNodes();
+        assertFalse(nodes.contains(toAddTwo));
+        assertTrue(nodes.contains(toAddOne));
+    }
+
+    @Test
     public void Graph_AddNodeKey(){
         Graph testGraph = new Graph();
         addNode(testGraph, "testNode");

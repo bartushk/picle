@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.ExecutorService;
 
 
 public class ProcessingNodeTest
@@ -22,7 +22,7 @@ public class ProcessingNodeTest
     {
         public IOperation<T> operation;
         public IResourceResolver<T> resolver;
-        public AbstractExecutorService executor;
+        public ExecutorService executor;
         public ProcessingNode<T> node;
     }
 
@@ -30,7 +30,7 @@ public class ProcessingNodeTest
         mockNode<T> returnNode = new mockNode<T>();
         returnNode.operation = (IOperation<T>)mock(IOperation.class);
         returnNode.resolver = (IResourceResolver<T>)mock(IResourceResolver.class);
-        returnNode.executor = (AbstractExecutorService)mock(AbstractExecutorService.class);
+        returnNode.executor = (ExecutorService)mock(ExecutorService.class);
         List<String> inputKeys = new ArrayList<String>();
         inputKeys.add("InOne");
         inputKeys.add("InTwo");

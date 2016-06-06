@@ -1,9 +1,8 @@
 package net.bartushk.picle.Graph;
 
-import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.AbstractExecutorService;
+import java.util.concurrent.ExecutorService;
 
 import net.bartushk.picle.Core.IOperation;
 import net.bartushk.picle.Core.IResourceResolver;
@@ -30,10 +29,10 @@ public class ProcessingNode<T> extends Node implements Runnable
     private HashMap<String, Integer> inputCounts;
     private IOperation<T> operation;
     private IResourceResolver<T> resourceResolver;
-    private AbstractExecutorService executor;
+    private ExecutorService executor;
     
     public ProcessingNode(String nodeKey, IOperation<T> operation, 
-                IResourceResolver<T> resolver, AbstractExecutorService executor){
+                IResourceResolver<T> resolver, ExecutorService executor){
         super(nodeKey);
         this.operation = operation;
         this.resourceResolver = resolver;
