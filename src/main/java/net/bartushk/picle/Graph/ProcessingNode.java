@@ -14,7 +14,6 @@ import net.bartushk.picle.Core.IResourceResolver;
  * to the next processing node. 
  *
  * @author Kyle Bartush
- * @see 
  * @since 0.1
  */
 public class ProcessingNode<T> extends Node implements Runnable
@@ -49,6 +48,7 @@ public class ProcessingNode<T> extends Node implements Runnable
         }
     }
 
+    @Override
     public void InputReady(String inputName, String lookupKey){
         if( !inputCounts.containsKey(inputName) )
             return;
@@ -74,8 +74,7 @@ public class ProcessingNode<T> extends Node implements Runnable
             String dataKey = this.nodeKey + key;
             this.resourceResolver.putResource(dataKey, operationOutput.get(key)); 
             Edge activeEdge = this.fromEdges.get(key);
-            @SuppressWarnings("unchecked")
-            ProcessingNode<T> toTrigger = (ProcessingNode<T>)activeEdge.getToNode();       
+            Node toTrigger = activeEdge.getToNode();       
             toTrigger.InputReady(activeEdge.getToKey(), dataKey);
         }
     }

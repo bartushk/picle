@@ -21,18 +21,17 @@ public class Node
     protected List<String> outputKeys;
 
     public Node(){
-        nodeKey = "No-Name-Node";
+        this("No-Name-Node");
+    }
+
+    public Node(String nodeKey){
+        this.nodeKey = nodeKey;
         fromEdges = new HashMap<String, Edge>();
         toEdges = new HashMap<String, Edge>();
         inputKeys = new ArrayList<String>();
         inputKeys.add("input");
         outputKeys = new ArrayList<String>();
         outputKeys.add("output");
-    }
-
-    public Node(String nodeKey){
-        this();
-        this.nodeKey = nodeKey;
     }
 
     public void addFromEdge(Edge toAdd){
@@ -73,5 +72,9 @@ public class Node
 
     public List<String> getOutputKeys(){
         return outputKeys;
+    }
+
+    public void InputReady(String inputName, String lookupKey){
+
     }
 }
