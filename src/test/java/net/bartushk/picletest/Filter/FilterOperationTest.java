@@ -1,12 +1,13 @@
 package net.bartushk.picletest.Filter;
 
-import org.junit.Test;
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 import net.bartushk.picle.Filter.FilterOperation;
 import net.bartushk.picle.Filter.IFilter;
 
+import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -17,6 +18,10 @@ import java.util.List;
 
 public class FilterOperationTest
 {
+
+    public FilterOperationTest(){
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    }
 
     @Test
     public void FilterOperation_Constructor(){
