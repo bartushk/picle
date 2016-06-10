@@ -1,18 +1,18 @@
-package net.bartushk.picletest.Filter;
+package net.bartushk.picletest.Core;
 
 import org.junit.Test;
 
-import net.bartushk.picle.Filter.*;
+import net.bartushk.picle.Core.DiscreteStepProperty;
 import static net.bartushk.picletest.TestUtils.EPSILON;
 import static org.junit.Assert.*;
 
 
-public class FilterPropertyTest
+public class DiscreteStepPropertyTest
 {
 
     @Test
-    public void FilterProperty_DefaultConstructor(){
-        FilterProperty prop = new FilterProperty();
+    public void DiscreteStepProperty_DefaultConstructor(){
+        DiscreteStepProperty prop = new DiscreteStepProperty();
 
         assertEquals(prop.getName(), "No-Name");
         assertEquals(prop.getMax(), 1.0, EPSILON);
@@ -22,8 +22,8 @@ public class FilterPropertyTest
     }
 
     @Test
-    public void FilterProperty_StringConstructor(){
-        FilterProperty prop = new FilterProperty("TestName");
+    public void DiscreteStepProperty_StringConstructor(){
+        DiscreteStepProperty prop = new DiscreteStepProperty("TestName");
 
         assertEquals(prop.getName(), "TestName");
         assertEquals(prop.getMax(), 1.0, EPSILON);
@@ -33,8 +33,8 @@ public class FilterPropertyTest
     }
 
     @Test
-    public void FilterProperty_FullConstructor(){
-        FilterProperty prop = new FilterProperty("TestName");
+    public void DiscreteStepProperty_FullConstructor(){
+        DiscreteStepProperty prop = new DiscreteStepProperty("TestName");
 
         assertEquals(prop.getName(), "TestName");
         assertEquals(prop.getMax(), 1.0, EPSILON);
@@ -44,14 +44,14 @@ public class FilterPropertyTest
     }
 
     @Test
-    public void FilterProperty_CopyConstructor(){
-        FilterProperty prop = new FilterProperty("TestName");
+    public void DiscreteStepProperty_CopyConstructor(){
+        DiscreteStepProperty prop = new DiscreteStepProperty("TestName");
         prop.setMax(12); 
         prop.setMin(-12); 
         prop.setValue(11);
         prop.setStep(1);
 
-        FilterProperty propCopy = new FilterProperty(prop);
+        DiscreteStepProperty propCopy = new DiscreteStepProperty(prop);
 
         
         assertEquals(prop.getName(), propCopy.getName());
@@ -64,8 +64,8 @@ public class FilterPropertyTest
     }
 
     @Test
-    public void FilterProperty_SetValue_NoEffectWhenOutsideRange(){
-        FilterProperty prop = new FilterProperty();
+    public void DiscreteStepProperty_SetValue_NoEffectWhenOutsideRange(){
+        DiscreteStepProperty prop = new DiscreteStepProperty();
         double origValue = prop.getMax();
         prop.setValue(origValue);
 

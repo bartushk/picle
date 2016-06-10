@@ -2,6 +2,8 @@ package net.bartushk.picletest.Filter;
 
 import net.bartushk.picle.Filter.*;
 import net.bartushk.picle.*;
+import net.bartushk.picle.Core.DiscreteStepProperty;
+
 import static net.bartushk.picletest.TestUtils.EPSILON;
 
 import static org.junit.Assert.*;
@@ -19,7 +21,7 @@ public class SharpnessFilterTest extends BaseFilterTest
     @Test
     public void SharpnessFilter_WhenConstructed_SharpnessPropertyIntialized(){
         SharpnessFilter filter = new SharpnessFilter();
-        FilterProperty prop = filter.getProperty("Sharpness"); 
+        DiscreteStepProperty prop = filter.getProperty("Sharpness"); 
         assertEquals(prop.getName(), "Sharpness");
         assertEquals(prop.getValue(), 0.0, EPSILON);
         assertEquals(prop.getMin(), -1.0, EPSILON);

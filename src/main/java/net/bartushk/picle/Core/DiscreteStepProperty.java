@@ -1,9 +1,9 @@
-package net.bartushk.picle.Filter;
+package net.bartushk.picle.Core;
 
 
 /**
  *
- * Basic struct like class used for holding information about one of a filter's editable
+ * Basic struct like class used for holding information about one of an editable
  * properties. For example, a color filter may have 3 properties named: Red Green Blue,
  * which could be used to dictate the amount each fundamental color type
  * is adjusted by the filter.
@@ -11,7 +11,7 @@ package net.bartushk.picle.Filter;
  * @author Kyle Bartush
  * @since 0.1
  */
-public class FilterProperty{
+public class DiscreteStepProperty{
     
     /*
      *
@@ -26,7 +26,7 @@ public class FilterProperty{
     private double value;
 
 
-    public FilterProperty(FilterProperty toCopy){
+    public DiscreteStepProperty(DiscreteStepProperty toCopy){
         this(   toCopy.getName(), 
                 toCopy.getMax(),
                 toCopy.getMin(),
@@ -34,7 +34,7 @@ public class FilterProperty{
                 toCopy.getValue());
     }
 
-    public FilterProperty(String name, double max, double min, double step, double value){
+    public DiscreteStepProperty(String name, double max, double min, double step, double value){
         this.name = name;
         this.max = max;
         this.min = min;
@@ -42,11 +42,11 @@ public class FilterProperty{
         this.value = value;
     }
 
-    public FilterProperty(String name){
+    public DiscreteStepProperty(String name){
         this(name, 1.0, 0.0, 0.1, 1.0);
     }
 
-    public FilterProperty(){
+    public DiscreteStepProperty(){
         this("No-Name");
     }
     

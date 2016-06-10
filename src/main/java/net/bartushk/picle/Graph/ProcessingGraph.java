@@ -1,11 +1,13 @@
 package net.bartushk.picle.Graph;
 
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
-import net.bartushk.picle.Core.DictionaryResourceResolver;
-import net.bartushk.picle.Core.IResourceResolver;
+import net.bartushk.picle.Combiner.*;
+import net.bartushk.picle.Core.*;
+import net.bartushk.picle.Filter.*;
+import net.bartushk.picle.Splitter.*;
 
 public class ProcessingGraph<T> extends Graph 
 {
@@ -34,6 +36,22 @@ public class ProcessingGraph<T> extends Graph
 
     public void setOutputCount(int count){
         this.exitNode = new ExitNode<T>(count, this.resourceResolver, this.outputHandler); 
+    }
+
+    public void startGraph( HashMap<String, T> inputs){
+
+    }
+
+    public void createNode(IFilter filter){
+                
+    }
+
+    public void createNode(ICombiner combiner){
+
+    }
+
+    public void createNode(ISplitter splitter){
+
     }
     
 }

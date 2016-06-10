@@ -1,13 +1,13 @@
 package net.bartushk.picle.Filter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
+
+import net.bartushk.picle.Core.DiscreteStepProperty;
 
 /**
  *
@@ -18,7 +18,8 @@ import org.opencv.core.Scalar;
  * @author Kyle Bartush
  * @since 0.1
  */
-public class ColorFilter extends Filter{
+public class ColorFilter extends Filter
+{
 
     /**
      *
@@ -28,9 +29,9 @@ public class ColorFilter extends Filter{
      */
     public ColorFilter(){
         super();
-        FilterProperty redProperty = new FilterProperty("Red");
-        FilterProperty greenProperty = new FilterProperty("Green");
-        FilterProperty blueProperty = new FilterProperty("Blue");
+        DiscreteStepProperty redProperty = new DiscreteStepProperty("Red");
+        DiscreteStepProperty greenProperty = new DiscreteStepProperty("Green");
+        DiscreteStepProperty blueProperty = new DiscreteStepProperty("Blue");
         
         redProperty.setStep(0.01);
         blueProperty.setStep(0.01);

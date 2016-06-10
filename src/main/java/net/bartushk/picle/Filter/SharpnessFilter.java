@@ -5,6 +5,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
+import net.bartushk.picle.Core.DiscreteStepProperty;
+
 /**
  *
  * A filter that will adjust the sharpness of an image. This filter has a 'Sharpness'
@@ -17,7 +19,8 @@ import org.opencv.imgproc.Imgproc;
  * @author Kyle Bartush
  * @since 0.1
  */
-public class SharpnessFilter extends Filter{
+public class SharpnessFilter extends Filter
+{
 
     // The max blur value, which is used in combination with the sharpness property
     // to determine the amount of blurring/sharpening.
@@ -37,7 +40,7 @@ public class SharpnessFilter extends Filter{
      */
     public SharpnessFilter(){
         super();
-        FilterProperty sharpnessProperty = new FilterProperty("Sharpness");
+        DiscreteStepProperty sharpnessProperty = new DiscreteStepProperty("Sharpness");
         
         sharpnessProperty.setStep(0.01);
         sharpnessProperty.setValue(0);

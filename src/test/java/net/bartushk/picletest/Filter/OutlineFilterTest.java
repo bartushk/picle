@@ -2,6 +2,8 @@ package net.bartushk.picletest.Filter;
 
 import net.bartushk.picle.Filter.*;
 import net.bartushk.picle.*;
+import net.bartushk.picle.Core.DiscreteStepProperty;
+
 import static net.bartushk.picletest.TestUtils.EPSILON;
 
 import static org.junit.Assert.*;
@@ -18,7 +20,7 @@ public class OutlineFilterTest extends BaseFilterTest
     @Test
     public void OutlineFilterTest_WhenConstructed_ThicknessPropertyIntialized(){
         OutlineFilter filter = new OutlineFilter();
-        FilterProperty prop = filter.getProperty("Thickness"); 
+        DiscreteStepProperty prop = filter.getProperty("Thickness"); 
         assertEquals(prop.getName(), "Thickness");
         assertEquals(prop.getValue(), 5.0, EPSILON);
         assertEquals(prop.getMin(), 3.0, EPSILON);
@@ -28,7 +30,7 @@ public class OutlineFilterTest extends BaseFilterTest
     @Test
     public void OutlineFilterTest_WhenConstructed_StrengthPropertyIntialized(){
         OutlineFilter filter = new OutlineFilter();
-        FilterProperty prop = filter.getProperty("Strength"); 
+        DiscreteStepProperty prop = filter.getProperty("Strength"); 
         assertEquals(prop.getName(), "Strength");
         assertEquals(prop.getValue(), 1.0, EPSILON);
         assertEquals(prop.getMin(), 0.1, EPSILON);

@@ -16,6 +16,7 @@ import net.bartushk.picle.Core.IResourceResolver;
  * @author Kyle Bartush
  * @since 0.1
  */
+
 public class ProcessingNode<T> extends Node implements Runnable
 {
     /*

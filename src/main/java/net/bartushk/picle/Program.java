@@ -44,7 +44,7 @@ public class Program
         String path = Program.class.getResource("/images/cat1.jpeg").getPath();
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         Mat img = Imgcodecs.imread(path);
-        IFilter filter = new OutlineFilter();
+        Filter filter = new OutlineFilter();
         filter.setProperty("Thickness", 3.0);
         filter.setProperty("Strength", 3.0);
         Mat filteredImg = filter.applyFilter(img);

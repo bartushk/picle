@@ -1,10 +1,9 @@
 package net.bartushk.picle.Filter;
 
-
-import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
+
+import net.bartushk.picle.Core.DiscreteStepProperty;
 
 
 
@@ -21,7 +20,8 @@ import org.opencv.imgproc.Imgproc;
  * @author Kyle Bartush
  * @since 0.1
  */
-public class OutlineFilter extends Filter{
+public class OutlineFilter extends Filter
+{
     
     /*
      *
@@ -29,8 +29,8 @@ public class OutlineFilter extends Filter{
      */
     public OutlineFilter(){
         super();
-        FilterProperty thicknessProperty = new FilterProperty("Thickness");
-        FilterProperty strengthProperty = new FilterProperty("Strength");
+        DiscreteStepProperty thicknessProperty = new DiscreteStepProperty("Thickness");
+        DiscreteStepProperty strengthProperty = new DiscreteStepProperty("Strength");
 
         thicknessProperty.setStep(2);
         thicknessProperty.setMin(3);
