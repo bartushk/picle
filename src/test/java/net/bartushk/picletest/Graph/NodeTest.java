@@ -97,9 +97,7 @@ public class NodeTest
     @Test
     public void Node_InputOutputKeys(){
         Node node = new Node();
-        assertEquals(node.getInputKeys().size(), 1);
-        assertEquals(node.getInputKeys().toArray()[0], "input");
-        assertEquals(node.getOutputKeys().size(), 1);
-        assertEquals(node.getOutputKeys().toArray()[0], "output");
+        assertEquals(node.getInputKeys().size(), 0);
+        assertEquals(node.getOutputKeys().size(), 0);
     }
 }

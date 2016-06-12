@@ -29,9 +29,7 @@ public class Node
         fromEdges = new HashMap<String, Edge>();
         toEdges = new HashMap<String, Edge>();
         inputKeys = new ArrayList<String>();
-        inputKeys.add("input");
         outputKeys = new ArrayList<String>();
-        outputKeys.add("output");
     }
 
     public void addFromEdge(Edge toAdd){

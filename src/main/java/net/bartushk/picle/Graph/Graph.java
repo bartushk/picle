@@ -178,4 +178,15 @@ public class Graph
     public Collection<Node> getNodes(){
         return this.nodes.values();
     }
+
+    /**
+     *
+     * Determines if a graph's nodes have all of their inputs and outputs
+     * hooked up correctly.
+     *
+     */
+    public boolean isComplete(){
+        //TODO: Write this logic :)
+        return true;
+    }
 }

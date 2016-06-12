@@ -28,7 +28,7 @@ public class ExitNode<T> extends Node
     public ExitNode(int numOutputs, IResourceResolver<T> resolver, IGraphOutputHandler<T> outputHandler){
         super("Exit-Node");
         for(int i = 0; i < numOutputs; i++){
-            this.outputKeys.add("Input" + i); 
+            this.inputKeys.add("Input" + i); 
         }
         this.resolver = resolver;
         this.outputHandler = outputHandler;

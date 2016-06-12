@@ -30,7 +30,7 @@ public class EntryNode<T> extends Node
         this.resolver = resolver;
     }
 
-    public void GraphInputReady(String itemKey, T data){
+    public void graphInputReady(String itemKey, T data){
         String dataKey = this.nodeKey + itemKey;
         this.resolver.putResource(dataKey, data);
         Edge activeEdge = this.fromEdges.get(itemKey);
