@@ -11,11 +11,11 @@ import net.bartushk.picle.Core.DiscreteStepProperty;
  *
  * A filter that gives the ability to create an 'outline' of an image. The user will
  * be able to control the 'thickness' of the outline created from the filter, as well as
- * a 'strength' property which will effect how bright the exposed outlines are.
+ * the 'strength' which will effect how bright the exposed outlines are.
  *
  * <p> This effect will be accomplished by using a sobel filter to create a gradient image.
- * The 'thickness' property will will determine the size of ther kernel, and the 'strength'
- * property will skill the gradient image result.
+ * The 'thickness' property will will determine the size of the kernel, and the 'strength'
+ * property will scale the gradient image result.
  *
  * @author Kyle Bartush
  * @since 0.1

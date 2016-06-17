@@ -6,8 +6,8 @@ import org.opencv.core.Mat;
 
 /**
  *
- * The combiner interface defines a basic set of methods that can be applied to
- * an image in the form of an OpenCV Mat. Each combiner should consist of one or more
+ * The splitter interface defines a basic set of methods that can be applied to
+ * an image in the form of an OpenCV Mat. Each splitter should consist of one or more
  * operations applied to a mat to acheive the desired effect. It is a single input
  * multi output operation.
  *
