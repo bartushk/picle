@@ -27,7 +27,7 @@ public class ExitNode<T> extends Node
 
     public ExitNode(int numOutputs, IResourceResolver<T> resolver, IGraphOutputHandler<T> outputHandler){
         super("Exit-Node");
-        for(int i = 0; i < numOutputs; i++){
+        for(int i = 1; i <= numOutputs; i++){
             this.inputKeys.add("Input" + i); 
         }
         this.resolver = resolver;
@@ -36,7 +36,15 @@ public class ExitNode<T> extends Node
 
     @Override
     public void InputReady(String inputName, String lookupKey){
+        if(!this.getInputKeys().contains(inputName)){
+            String exString = String.format("Input key of '' is not valid for this exit node.", inputName); 
+            throw new IllegalArgumentException(exString);
+        }
         T data = this.resolver.getResource(lookupKey); 
+        if( data == null ){
+            String exString = String.format("Data not found at key '%1'.", lookupKey); 
+            throw new IllegalArgumentException(exString);
+        }
         this.outputHandler.handleOutput(inputName, data);
     }
 

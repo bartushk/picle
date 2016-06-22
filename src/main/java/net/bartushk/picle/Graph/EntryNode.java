@@ -24,16 +24,24 @@ public class EntryNode<T> extends Node
     
     public EntryNode(int numInputs, IResourceResolver<T> resolver){
         super("Entry-Node"); 
-        for(int i = 0; i < numInputs; i++){
+        for(int i = 1; i <= numInputs; i++){
             this.outputKeys.add("Input" + i); 
         }
         this.resolver = resolver;
     }
 
     public void graphInputReady(String itemKey, T data){
+        if(!this.getOutputKeys().contains(itemKey)){
+            String exString = String.format("Input key of '' is not valid for this exit node.", itemKey); 
+            throw new IllegalArgumentException(exString);
+        }
         String dataKey = this.nodeKey + itemKey;
         this.resolver.putResource(dataKey, data);
         Edge activeEdge = this.fromEdges.get(itemKey);
+        if( activeEdge == null ){
+            String exString = String.format("No edge found for itemKey '%1'.", itemKey); 
+            throw new IllegalArgumentException(exString);
+        }
         Node toTrigger = activeEdge.getToNode();       
         toTrigger.InputReady(activeEdge.getToKey(), dataKey);
     }

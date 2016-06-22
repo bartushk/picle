@@ -77,7 +77,6 @@ public class ProcessingGraph<T> extends Graph
         }
 
         for(String entryKey : this.entryNode.getOutputKeys()){
-            System.out.println(entryKey);
             if( !inputs.containsKey(entryKey) ){
                 throw new IncompleteGraphException("The provided inputs do not match the graph inputs.");
             }
