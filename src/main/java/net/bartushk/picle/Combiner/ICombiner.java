@@ -20,7 +20,7 @@ import org.opencv.core.Mat;
  */
 public interface ICombiner
 {
-    Mat applyCombiner(List<Mat> inputImage);
+    Mat applyCombiner(List<Mat> inputImages);
 
     List<String> getInputNames();
 }

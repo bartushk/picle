@@ -51,6 +51,7 @@ public class Program
         filter.setProperty("Thickness", 3.0);
         filter.setProperty("Strength", 1.0);
         Mat filteredImg2 = filter.applyFilter(img);
+        Core.add(img, filteredImg, filteredImg2);
 
         imgShow(img);
         imgShow(filteredImg);
